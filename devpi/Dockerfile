@@ -1,4 +1,4 @@
-FROM python:3.7
+FROM python:3.7.3-slim-stretch
 
 ENV DEVPI_CLIENT_VERSION 4.4.0
 ENV DEVPI_SERVER_VERSION 4.9.0
@@ -8,8 +8,7 @@ RUN addgroup --system --gid 1000 devpi \
       --home /data --shell /sbin/nologin --gid 1000 devpi
 
 RUN pip install -q "devpi-client==$DEVPI_CLIENT_VERSION" \
- && rm -rf ~/.cache/pip
-RUN pip install -q "devpi-server==$DEVPI_SERVER_VERSION" \
+ && pip install -q "devpi-server==$DEVPI_SERVER_VERSION" \
  && rm -rf ~/.cache/pip
 
 VOLUME /data
@@ -22,4 +21,4 @@ ENV HOME /data
 WORKDIR /data
 
 ENTRYPOINT ["/entrypoint"]
-CMD ["devpi"]
+CMD ["devpi-server"]
