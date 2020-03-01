@@ -1,8 +1,8 @@
 ---
-version: "3.5"
+version: "3.7"
 
 services:
   dev:
     build:
       context: .
-    image: okomestudio/devpi:4.9.0
+    image: okomestudio/devpi:5.4.0
